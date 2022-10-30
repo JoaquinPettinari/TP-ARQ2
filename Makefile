@@ -5,6 +5,8 @@ init-app:
 	kubectl apply -f ./src/namespace.yaml
 # crea la instancia de rabbitmq en el namespace creado anteriormente
 	kubectl apply -f ./src/rabbitmq.yaml -n jpettinari
+# Se crea el worker	
+	kubectl apply -f ./src/worker.yml -n jpettinari
 
 install-nginx-ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx

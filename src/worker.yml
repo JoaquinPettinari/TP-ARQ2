@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  labels:
+    app: message-fun
+    app.kubernetes.io/component: worker
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+      app: message-fun
+      app.kubernetes.io/component: worker
+  template:
+    metadata:
+      labels:
+        app: message-fun
+        app.kubernetes.io/component: worker
+    spec:
+      containers:
+      - name: worker
+        image: quay.io/unahur.arqsw/messagefun.worker
+        resources: 
+          request: 
+            memory: "90Mi"
+            cpu: "250m"
+          limits:
+            memory: "300Mi"
+            cpu: "2"
+        livenessProbe:
+          httpGet:
+            path: /healthz/live
+            port: 9090
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz/ready
+            port: 9090
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+        ports:
+        - name: http
+          containerPort: 9090
+        env:
+        - name: MessageBusFun__RabbitMQ__Password
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-user
+              key: default-password
+              optional: false
+        - name: MessageBusFun__RabbitMQ__Username
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-user
+              key: default-user
+              optional: false
+        - name: MessageBusFun__RabbitMQ__Host	
+          value: rabbitmq://rabbitmq:5672/
