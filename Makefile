@@ -4,7 +4,7 @@ init-app:
 # crea el namespace si no existe
 	kubectl apply -f ./src/namespace.yaml
 # crea la instancia de rabbitmq en el namespace creado anteriormente
-	kubectl apply -f ./src/rabbitmq.yaml -n jperez
+	kubectl apply -f ./src/rabbitmq.yaml -n jpettinari
 
 install-nginx-ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx

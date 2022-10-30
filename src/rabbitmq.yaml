@@ -87,10 +87,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - rabbit.jperez.localdev.me
+        - rabbit.jpettinari.localdev.me
       secretName: rabbitmq-tls
   rules:
-    - host: rabbit.jperez.localdev.me
+    - host: rabbit.jpettinari.localdev.me
       http:
         paths:
           - path: /
