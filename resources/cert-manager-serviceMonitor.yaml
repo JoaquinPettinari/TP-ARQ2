@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: cert-manager
+  labels:
+    app: cert-manager
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: cert-manager
+    # labels defined in spec.serviceMonitorSelector.matchLabels
+    release: monitoring
+spec:
+  endpoints:
+    - port: tcp-prometheus-servicemonitor
+      scheme: http
+      interval: 15s
+      scrapeTimeout: 14s
+  selector:
+    matchLabels:
+      app: cert-manager
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: cert-manager
