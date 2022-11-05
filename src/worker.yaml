@@ -61,3 +61,23 @@ spec:
               optional: false
         - name: MessageBusFun__RabbitMQ__Host	
           value: rabbitmq://rabbitmq:5672/
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: worker-pod-monitor
+  labels:
+    app: message-fun
+    app.kubernetes.io/component: worker
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: message-fun
+      app.kubernetes.io/component: worker
+  podMetricsEndpoints:
+  - port: http
+    scheme: http
+    interval: 15s
+    scrapeTimeout: 14s
+    path: /metrics
