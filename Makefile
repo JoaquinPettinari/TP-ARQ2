@@ -9,6 +9,7 @@ init-app:
 	kubectl apply -f ./src/worker.yaml -n jpettinari
 # Se crea la api	
 	kubectl apply -f ./src/api.yaml -n jpettinari
+
 install-nginx-ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 	helm repo add jetstack https://charts.jetstack.io
