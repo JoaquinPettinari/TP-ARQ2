@@ -1,4 +1,4 @@
-# TRABAJO PRACTICO ARQUITECTURA DE SOFTWARE II
+# TRABAJO PRACTICO ARQUITECTURA DE SOFTWARE II - Joaquin Pettinari
 
 Trabajo practico sobre contenedores y micro-servicios de ARQUTECTURA DE SOFTWARE 2 @ UNAHUR.
 
